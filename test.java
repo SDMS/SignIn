@@ -22,8 +22,9 @@ public class test
         
         Room maclab = new Room(31, students);
         
-        maclab.signIn(1);
+        maclab.signIn(1, 1);
         
+        maclab.signIn(2, 2);
     }
     
 }

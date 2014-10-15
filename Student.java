@@ -32,4 +32,17 @@ public class Student
     {
         in = i;
     }
+    public int getID()
+    {
+        return ID;
+    }
+    public String getFirstName(){
+        return firstName;
+    }
+    public String getLastName(){
+        return lastName;
+    }
+    public Date getSignInDate(){
+        return in;
+    }
 }
