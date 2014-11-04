@@ -1,0 +1,15 @@
+{
+	"name": "signin",
+	"version": "0.0.1",
+	"description": "Replacement for old excel sign in database",
+	"author": "Giselle Koo <gkoo@wethersfield.me>",
+	
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gisellegk/signin"
+	},
+	"dependencies": {
+		"express": "*",
+		"socket.io": "*"
+	}
+}

@@ -2,3 +2,5 @@
 *.class
 *.ctxt
 /node_modules
+/build
+*.project

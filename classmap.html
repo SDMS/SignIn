@@ -2,12 +2,19 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="./style.css">
-<script type="javascript">
-	document.getElementByID("computer").append("<b>helloworld</b>")
-	console.log("alert")
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var socket = io();
+	function dork() {
+		socket.emit('dork', function() {
+		console.log('im a dork');
+		});
+		console.log('hello dork');
+	}
 </script>
 </head>
 <body>
+<button onclick="dork()">Click here if you are a dork</button>
 <div id=row1>
 	<div class=computer id=01></div>
 	<div class=computer id=02></div>
