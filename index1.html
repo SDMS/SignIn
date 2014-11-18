@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./index.css">
+    </head>
+    <body>
+        <div class="tabs">
+            <input type="radio" checked name="tabs" id="signin">
+                <label for="signin">Sign In</label>
+        
+        </div>
+        
+        
+        <ul class="tabs">
+            <li>
+                <input type="radio" checked name="tabs" id="signin">
+                    <label for="signin">Sign In</label>
+                    <div class="tab-content">
+                        Sign In<br>
+                        Type your Student ID or scan your barcode. Then, select an empty computer from the class map, and click "Sign In". <br>
+                        <input id="sid" type="text" maxlength="8" />
+                    </div>
+                    </li>
+            <li>
+                <input type="radio" name="tabs" id="signout">
+                    <label for="signout">Sign Out</label>
+                    <div class="tab-content">
+                        Sign Out<br>
+                        Select your name from the class map. Then select your destination, and click "Sign Out".<br>
+                        <ul id="options">
+                            <li>Cafeteria</li>
+                            <li>Classroom</li>
+                            <li>Nurse</li>
+                            <li>Office</li>
+                            <li>Media Center</li>
+                            <li>Locker</li>
+                            <li>Bathroom/Water</li>
+                        </ul>
+                        
+                    </div>
+                    </li>
+        </ul>
+        
+    </body>
+</html>
+
