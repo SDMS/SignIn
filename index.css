@@ -63,10 +63,22 @@ body, html {
         box-sizing: border-box;
       }
       
-      
-      
-      .map{
-        position: absolute;
+      #map{
+        position:absolute;
+        right:0px;
         width:66%;
-        background:#00f;
+        background-color:#00f;
+      }
+      
+      #map .row1{
+        float:right;
+        display:block;
+      }
+      #map .row2{
+        float:right;
+        display:block;
+      }
+      #map .row3{
+      }
+      #map .row4{
       }
