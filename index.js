@@ -8,11 +8,14 @@ app.get('/', function(req, res) {
 app.get('/index.css', function(req, res) {
 	res.sendFile(__dirname + '/index.css');
 });
+app.get('/signin.js', function(req, res) {
+	res.sendFile(__dirname + '/signin.js');
+});
 
 io.on('connection', function(socket) {
 	console.log('a user connected');
-	socket.on('submit', function(socket) {
-		console.log('submitted');
+	socket.on('sign in', function(data) {
+		console.log('submitted ' + JSON.stringify(data));
 		});
 });
 
