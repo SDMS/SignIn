@@ -38,7 +38,7 @@ io.on('connection', function(socket) {
 		// remove from lab table
 		// set signed in to false
 		var name = ""; // actually get name lol
-		console.log('signed out: ' + name + 'at computer #' + data.id);
+		console.log('signed out: ' + name + 'at computer #' + data.computer);
 		socket.emit('sign out success');
 	});
 });
