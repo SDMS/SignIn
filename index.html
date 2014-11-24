@@ -9,7 +9,7 @@
 
 <ul class="tabs">
     <li>
-        <input type="radio" checked name="tabs" id="signin">
+        <input type="radio" checked name="tabs" id="signin" onClick="switchTabStyles(this.id)">
             <label for="signin">Sign In</label>
             <div class="tab-content">
                 Sign In<br>
@@ -19,7 +19,7 @@
             </div>
         </li>
     <li>
-        <input type="radio" name="tabs" id="signout">
+        <input type="radio" name="tabs" id="signout" onClick="switchTabStyles(this.id)">
             <label for="signout">Sign Out</label>
             <div class="tab-content">
                 Sign Out<br>
@@ -37,7 +37,7 @@
             </div>
     </li>
 </ul>
-<div class="map">
+<div id="map" class="signin">
  <div id="row1">
      <div id="0" class="computer taken">PC Computer</div>
      <div id="31" class="computer" onClick="chooseComputer(this.id)" onClick="chooseComputer(this.id)">Computer 31</div>

@@ -31,6 +31,16 @@ io.on('connection', function(socket) {
 			console.log('check success');
 		}
 	});
+	
+	socket.on('sign out', function(data){
+		// check to make sure student isn't already signed out
+		// copy data from lab table, record time and destination
+		// remove from lab table
+		// set signed in to false
+		var name = ""; // actually get name lol
+		console.log('signed out: ' + name + 'at computer #' + data.id);
+		socket.emit('sign out success');
+	});
 });
 
 var server = http.listen(3000, function() {

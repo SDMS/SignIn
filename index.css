@@ -76,7 +76,7 @@ body, html {
       
 
 
-      .map{
+      #map{
         position:absolute;
         right:1%;
         width:66%;
@@ -109,15 +109,33 @@ body, html {
         overflow-y:hidden;
         white-space: nowrap;
       }
-	.computer:hover {
+	.signin .computer:hover {
 	border: 2px ridge #8092e1;
 	}
-      .computer.taken {
+      .signin .computer.taken {
         opacity: .6;
         filter: alpha(opacity=60);      
 	border: 2px solid #000;
 	}
 
-	.computer.selected {
+	.signin .computer.selected {
 	background:#7082d1;
 	}
+
+	.signout .computer {
+	opacity: .6;
+	filter: alpha(opacity=60);
+	}
+      .signout .computer.taken {
+        opacity: 1;
+        filter: alpha(opacity=100);      
+	}
+	.signout .computer:hover{
+	border: 2px solid #000;
+	}
+	.signout .computer.taken:hover {
+	border: 2px ridge #8092e1;	
+	}
+
+
+
