@@ -24,16 +24,15 @@
             <div class="tab-content">
                 Sign Out<br>
                 Select your name from the class map. Then select your destination, and click "Go".<br>
-                <ul id="options">
-                    <li>Cafeteria</li>
-                    <li>Classroom</li>
-                    <li>Nurse</li>
-                    <li>Office</li>
-                    <li>Media Center</li>
-                    <li>Locker</li>
-                    <li>Bathroom/Water</li>
-                </ul>
-
+                <div class="destination" id="cafeteria" onClick="chooseDestination(this.id)">Cafeteria</div>
+                <div class="destination" id="classroom" onClick="chooseDestination(this.id)">Classroom</div>
+                <div class="destination" id="library" onClick="chooseDestination(this.id)">Media Center</div>
+                <div class="destination" id="office" onClick="chooseDestination(this.id)">Office</div>
+                <div class="destination" id="nurse" onClick="chooseDestination(this.id)">Nurse</div>
+                <div class="destination" id="locker" onClick="chooseDestination(this.id)">Locker</div>
+                <div class="destination" id="bathroom" onClick="chooseDestination(this.id)">Bathroom</div>
+                <div class="destination" id="water" onClick="chooseDestination(this.id)">Water</div>
+                <button onclick="signout()">Go</button>
             </div>
     </li>
 </ul>

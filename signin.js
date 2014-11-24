@@ -1,6 +1,7 @@
 var socket = io();
 
 var selectedComputer = -1;
+var destination = -1;
 
 function signin() {
 	var sid = document.getElementById('sid').value;
@@ -15,7 +16,7 @@ function signin() {
 		alert('student id ' + sid + ' at computer ' + selectedComputer);
 		// display student's information
 		document.getElementById(selectedComputer).className = "computer taken";
-		// clear text box
+		document.getElementById('sid').value = '';// clear text box
 		selectedComputer = -1;
 	});
 	socket.on('check fail', function(message){
@@ -24,38 +25,77 @@ function signin() {
 	});
 }
 
+function signout(){
+    if(selectedComputer == -1 | destination == -1) {
+        alert('Please click on your name and select your destination');
+        return;
+    }
+    if(confirm("Are you sure you want to sign out?")){ // then student information.
+        var message = {"computer": selectedComputer, "destination": destination};
+        socket.emit('sign out', message)
+    }
+    socket.on('sign out success', function(){
+              alert('sign out successful');
+              // change computer to empty
+              deselectComputer();
+              document.getElementById(destination).className = "destination";
+              destination = -1;
+              });
+}
+
+
+function switchTabStyles(tab){
+    document.getElementById("map").className=tab;
+    deselectComputer();
+    selectedComputer = -1;
+
+    
+}
+
+function deselectComputer(){
+    if(selectedComputer != -1){
+        if(document.getElementById(selectedComputer).className == "computer taken selected"){
+            document.getElementById(selectedComputer).className = "computer taken";
+        } else {
+            document.getElementById(selectedComputer).className = "computer";
+        }
+
+    }
+}
+
 function chooseComputer(id) {
+     deselectComputer();
+     if(id == selectedComputer){
+          selectedComputer = -1;
+          return;
+     }
 	if(document.getElementById("signin").checked){
+        
 		// check if new computer is already occupied
 		if(document.getElementById(id).className != "computer taken") {
-			// deselect old computer
-			if(selectedComputer != -1) { // if there was already a previously selected computer
-				document.getElementById(selectedComputer).className = "computer";
-			}
 			// select new computer
-			selectedComputer = id;
-			document.getElementById(id).className = "computer selected";
+            selectedComputer = id;
+            document.getElementById(id).className = "computer selected";
+            
 		}
 	} else {
+        // if computer is occupied
 		if(document.getElementById(id).className == "computer taken"){
-			if(confirm("Are you sure you want to sign out?")){ // then student information.
-				signOut(id);
-			}
+            selectedComputer = id;
+            document.getElementById(id).className = "computer taken selected";
+			
 		}
 	}
 }
 
-function signOut(id){
-	var dest = prompt("Type your destination (cafe, classroom, office)");
-	var message = {"computer": id, "destination": dest};
-	socket.emit('sign out', message);
-	socket.on('sign out success', function(){
-		// alert sign out
-		// change computer to empty
-		document.getElementById(id).className = "computer";
-	});
+function chooseDestination(id) {
+    if(destination != -1){
+        document.getElementById(destination).className = "destination";
+    }
+    if(destination == id){
+        return;
+    }
+    document.getElementById(id).className = "destination selected";
+    destination = id;
 }
 
-function switchTabStyles(tab){
-	document.getElementById("map").className=tab;
-}

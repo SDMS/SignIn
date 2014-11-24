@@ -39,6 +39,7 @@ io.on('connection', function(socket) {
 		// set signed in to false
 		var name = ""; // actually get name lol
 		console.log('signed out: ' + name + 'at computer #' + data.computer);
+        console.log('destination: ' + data.destination);
 		socket.emit('sign out success');
 	});
 });

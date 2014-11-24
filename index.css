@@ -8,6 +8,12 @@ body, html {
           font-weight: 100;
           text-align: left;
           font-family: helvetica;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
       }
        
       .tabs input[type=radio] {
@@ -112,10 +118,10 @@ body, html {
 	.signin .computer:hover {
 	border: 2px ridge #8092e1;
 	}
-      .signin .computer.taken {
+    .signin .computer.taken {
         opacity: .6;
         filter: alpha(opacity=60);      
-	border: 2px solid #000;
+        border: 2px solid #000;
 	}
 
 	.signin .computer.selected {
@@ -136,6 +142,30 @@ body, html {
 	.signout .computer.taken:hover {
 	border: 2px ridge #8092e1;	
 	}
+    
+    .signout .computer.taken.selected{
+        background:#7082d1;
+    }
 
-
+    .destination {
+        position:relative;
+        margin: .5em;
+        margin-left:auto;
+        margin-right:auto;
+        background: #fff;
+        border: 2px solid #3b356b;
+        width:50%;
+        text-align:center;
+    }
+    
+    .destination:hover {
+        border: 2px solid #fff;
+    }
+    
+    .destination.selected {
+        background: #ccc;
+    }
+    .destination.selected:hover {
+        border: 2px solid #ccc;
+    }
 
