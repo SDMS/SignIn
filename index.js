@@ -14,6 +14,7 @@ app.get('/signin.js', function(req, res) {
 
 io.on('connection', function(socket) {
 	console.log('a user connected');
+      // update class map based on active user db
 	
 	socket.on('sign in', function(data) {
 		console.log('submitted ' + JSON.stringify(data));
