@@ -2,6 +2,9 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var db = require('./db/db.js');
+
+
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });
@@ -21,16 +24,24 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('check student', function(message){
-		if(false) { // student not in database 
-			socket.emit('check fail', "Student ID not in database.");
-			console.log('check fail: 1');
-		} else if(false){ // student already signed in
-			socket.emit('check fail', "You are already signed in.");
-			console.log('check fail: 2');
-		} else {
-			socket.emit('check success');
-			console.log('check success');
-		}
+		console.log(message);
+		db.findStudent(message, function(err, row){
+			if(err != null){
+				console.log(err);
+				return;
+			}
+			if(row == undefined) { // student not in database 
+				socket.emit('check fail', "Student ID not in database.");
+				console.log('check fail: 1');
+				console.log(id);
+			} else if(false){ // student already signed in
+				socket.emit('check fail', "You are already signed in.");
+				console.log('check fail: 2');
+			} else {
+				socket.emit('check success');
+				console.log('check success');
+			}
+		});
 	});
 	
 	socket.on('sign out', function(data){

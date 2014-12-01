@@ -6,12 +6,15 @@ var destination = -1;
 function signin() {
 	var sid = document.getElementById('sid').value;
 	var message = {"id": sid, "computer": selectedComputer};
+	console.log(message);
+	console.log(sid);
 	if(selectedComputer == -1) {
 		alert('Please select a computer');
 		return;
 	}
 	socket.emit('check student', sid); 	// check if student exists, check if student is already signed in
 	socket.on('check success', function(){
+		console.log('signing in.... ' + JSON.stringify(message));
 		socket.emit('sign in', message);
 		alert('student id ' + sid + ' at computer ' + selectedComputer);
 		// display student's information

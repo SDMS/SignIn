@@ -4,7 +4,9 @@ var exists = fs.existsSync(file);
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(file);
-    
+
+
+
 db.serialize(function() {
         if(!exists){
                  console.log("Creating DB file");
@@ -25,7 +27,20 @@ db.serialize(function() {
              }
 });
 
-db.close();
+//db.close();
+
+module.exports.findStudent = function findStudent(sid, callback){
+//	db = new sqlite3.Database(file);
+	db.get('SELECT id FROM students WHERE id=?', sid, callback); 
+//	db.close();
+	/*function(err, row){
+			exists = row;
+			console.log(exists);
+			if(row == undefined) { return; }
+			else if(row.id == sid) { console.log("it worked"); }
+		});*/
+
+}
 
 /*
 function importStudents(){
@@ -40,11 +55,7 @@ function importStudents(){
         
         stmt.finalize();
     }
-}
-/*
-function findStudent(sid){
-	var stmt = db.prepare('SELECT EXISTS(SELECT id FROM students WHERE id=?)', sid);
-	return stmt.run(sid);
-
 }*/
+
+
 
