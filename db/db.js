@@ -25,20 +25,19 @@ db.serialize(function() {
              } else {
              console.log("DB already exists");
              }
+
 });
 
 //db.close();
 
 module.exports.findStudent = function findStudent(sid, callback){
-//	db = new sqlite3.Database(file);
-	db.get('SELECT id FROM students WHERE id=?', sid, callback); 
-//	db.close();
-	/*function(err, row){
-			exists = row;
-			console.log(exists);
-			if(row == undefined) { return; }
-			else if(row.id == sid) { console.log("it worked"); }
+		
+		
+		/*db.get('SELECT CASE 1 WHEN EXISTS(SELECT id FROM students WHERE id=?) THEN (SELECT firstName FROM students WHERE id=?) ELSE null END', sid, sid, function(err, row){
+			console.log(row);
+			console.log(err);
 		});*/
+		db.get('SELECT * FROM students WHERE id=?', sid, callback);
 
 }
 

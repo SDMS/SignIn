@@ -19,27 +19,24 @@ io.on('connection', function(socket) {
 	console.log('a user connected');
       // update class map based on active user db
 	
-	socket.on('sign in', function(data) {
-		console.log('submitted ' + JSON.stringify(data));
-	});
-	
-	socket.on('check student', function(message){
+	socket.on('sign in', function(message){
+		console.log("received data:");
 		console.log(message);
-		db.findStudent(message, function(err, row){
+		db.findStudent(message.id, function(err, row){
 			if(err != null){
 				console.log(err);
 				return;
 			}
 			if(row == undefined) { // student not in database 
-				socket.emit('check fail', "Student ID not in database.");
-				console.log('check fail: 1');
-				console.log(id);
+				socket.emit('sign in fail', "Student ID not in database.");
+				console.log('check fail: Student ID not in database.');
 			} else if(false){ // student already signed in
-				socket.emit('check fail', "You are already signed in.");
-				console.log('check fail: 2');
+				socket.emit('sign in fail', "You are already signed in.");
+				console.log('check fail: Already signed in.');
 			} else {
-				socket.emit('check success');
-				console.log('check success');
+				socket.emit('sign in success', message);
+				console.log('emitting check success');
+				console.log('submitted ' + JSON.stringify(message));
 			}
 		});
 	});
