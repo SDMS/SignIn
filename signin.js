@@ -29,14 +29,12 @@ function signout(){
 socket.on('sign in success', function(student){
 	console.log('signing in.... ' + JSON.stringify(student));
 
-//	if(selectedComputer != -1){
-		alert('student id ' + student.id + ' at computer ' + selectedComputer);
-		// display student's information
-		document.getElementById(selectedComputer).className = "computer taken";
-//	}
+	alert('student id ' + student.id + ' at computer ' + selectedComputer);
+	// display student's information
+	document.getElementById(selectedComputer).className = "computer taken";
+	
 	document.getElementById('sid').value = '';
 	selectedComputer = -1;
-	message = null;
 });
 
 socket.on('sign in fail', function(err){
@@ -44,7 +42,6 @@ socket.on('sign in fail', function(err){
 	document.getElementById('sid').value = '';
 	deselectComputer();
 	selectedComputer = -1;
-	message = null;
 });
 
 socket.on('sign out success', function(){
