@@ -4,28 +4,14 @@ var selectedComputer = -1;
 var destination = -1;
 
 function signin() {
-	var sid = document.getElementById('sid').value;
-	var message = {"id": sid, "computer": selectedComputer};
-	console.log(message);
-	console.log(sid);
 	if(selectedComputer == -1) {
 		alert('Please select a computer');
 		return;
 	}
-	socket.emit('check student', sid); 	// check if student exists, check if student is already signed in
-	socket.on('check success', function(){
-		console.log('signing in.... ' + JSON.stringify(message));
-		socket.emit('sign in', message);
-		alert('student id ' + sid + ' at computer ' + selectedComputer);
-		// display student's information
-		document.getElementById(selectedComputer).className = "computer taken";
-		document.getElementById('sid').value = '';// clear text box
-		selectedComputer = -1;
-	});
-	socket.on('check fail', function(message){
-		alert('error: ' + message);
-		// clear text box
-	});
+	var message = {"id": document.getElementById('sid').value, "computer": selectedComputer};
+	console.log(JSON.stringify(message));
+	
+	socket.emit('sign in', message); 	// check if student exists, check if student is already signed in
 }
 
 function signout(){
@@ -37,14 +23,38 @@ function signout(){
         var message = {"computer": selectedComputer, "destination": destination};
         socket.emit('sign out', message)
     }
-    socket.on('sign out success', function(){
-              alert('sign out successful');
-              // change computer to empty
-              deselectComputer();
-              document.getElementById(destination).className = "destination";
-              destination = -1;
-              });
+
 }
+
+socket.on('sign in success', function(student){
+	console.log('signing in.... ' + JSON.stringify(student));
+
+//	if(selectedComputer != -1){
+		alert('student id ' + student.id + ' at computer ' + selectedComputer);
+		// display student's information
+		document.getElementById(selectedComputer).className = "computer taken";
+//	}
+	document.getElementById('sid').value = '';
+	selectedComputer = -1;
+	message = null;
+});
+
+socket.on('sign in fail', function(err){
+	alert('error: ' + err);
+	document.getElementById('sid').value = '';
+	deselectComputer();
+	selectedComputer = -1;
+	message = null;
+});
+
+socket.on('sign out success', function(){
+	alert('sign out successful');
+	// change computer to empty
+    deselectComputer();
+    document.getElementById(destination).className = "destination";
+    destination = -1;
+    });
+
 
 
 function switchTabStyles(tab){
@@ -52,7 +62,6 @@ function switchTabStyles(tab){
     deselectComputer();
     selectedComputer = -1;
 
-    
 }
 
 function deselectComputer(){
