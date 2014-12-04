@@ -16,11 +16,9 @@ app.get('/signin.js', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-	console.log('a user connected');
+	console.log('a user connected' + "\n");
       // update class map based on active user db
       db.getAllActive(function(err, row){
-      	console.log(row);
-      	console.log(row.length);
       	for(var i = 0; i < row.length; i++){
       		var student = {action: "sign in", id: row[i].id, computer: row[i].computer, info: row[i].firstName + " " + row[i].lastName + "<br>" + row[i].team + "/" + row[i].grade};
       		socket.emit('update map', student);
@@ -37,13 +35,13 @@ io.on('connection', function(socket) {
 			}
 			if(row != undefined) { // student not in database 
 				socket.emit('sign in fail', "You are already signed in.");
-				console.log('check fail: Already signed in.');
+				console.log('check fail: Already signed in.' + "\n");
 			} 
 			else { 
 				db.findStudent(student.id, function(err, row){ 
 					if(row == undefined) { // student already signed in
 						socket.emit('sign in fail', "Student ID not in database.");
-						console.log('check fail: Student ID not in database.');
+						console.log('check fail: Student ID not in database.' + "\n");
 					} 
 					else {
 						db.signInStudent(row, student.computer);
@@ -52,8 +50,7 @@ io.on('connection', function(socket) {
 						student.action = 'sign in';
 						socket.broadcast.emit('update map', student);
 						console.log('check success');
-						console.log('row: ' + JSON.stringify(row));
-						console.log('submitted ' + JSON.stringify(student));
+						console.log('submitted ' + JSON.stringify(student) + "\n");
 					}
 				});			
 			}
@@ -66,14 +63,14 @@ io.on('connection', function(socket) {
 			if(row == undefined) { // student not signed in
 				console.log(err + " " + row);
 				socket.emit('sign out fail', 'student not signed in');
-				console.log('sign out fail: student not signed in');
+				console.log('sign out fail: student not signed in' + "\n");
 			}
 			else {
 				// copy data from lab table, record time and destination and remove from lab table
 				db.signOutStudent(row, student.destination, function(err, row){
 					var name = row.firstName + " " + row.lastName;
 					console.log('signed out: ' + name + ' at computer #' + student.computer);
-    		    	console.log('destination: ' + student.destination);
+    		    	console.log('destination: ' + student.destination + "\n");
 					socket.emit('sign out success', name);
 					student.action = 'sign out';
 					socket.broadcast.emit('update map', student);
