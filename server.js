@@ -18,6 +18,10 @@ app.get('/signin.js', function(req, res) {
 io.on('connection', function(socket) {
 	console.log('a user connected');
       // update class map based on active user db
+      db.getAllActive(function(err, row){
+      	console.log(row);
+      	console.log(err);
+      });
 	
 	socket.on('sign in', function(message){
 		console.log("received data:");

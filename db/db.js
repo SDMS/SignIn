@@ -28,6 +28,7 @@ db.serialize(function() {
 
 });
 
+
 //db.close();
 
 module.exports.findStudent = function findStudent(sid, callback){
@@ -49,6 +50,10 @@ module.exports.signOutStudent = function signOutStudent(row, destination, callba
 	db.run('INSERT INTO log VALUES(?,?,?,?,?,?,?,?,?)', row.id, row.firstName, row.lastName, row.grade, row.team, row.computer, row.timeIn, date, destination);
 	db.run('DELETE FROM active WHERE id=?', row.id); 
 	db.get('SELECT * FROM log WHERE id=?', row.id, callback);
+}
+
+module.exports.getAllActive = function getAllActive(callback){
+	db.get('SELECT * FROM active', callback);
 }
 
 
