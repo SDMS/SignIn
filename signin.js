@@ -49,14 +49,14 @@ socket.on('sign out success', function(name){
 	alert('sign out successful: ' + name);
 	// change computer to empty
 	document.getElementById(selectedComputer).innerHTML = "Computer " + selectedComputer + "<br>";
-    deselectComputer();
+    deselectComputer(); // this doesn't do what i think it should do
     document.getElementById(destination).className = "destination";
     destination = -1;
     });
     
 socket.on('sign out fail', function(err){
 	alert('error: ' + err);
-	deselectComputer();
+	deselectComputer(); // this doesn't do what i think it should do
 	destination = -1;
 });
 
