@@ -22,7 +22,7 @@ io.on('connection', function(socket) {
       	console.log(row);
       	console.log(row.length);
       	for(var i = 0; i < row.length; i++){
-      		var student = {id = row[i].id, computer = row[i].computer, info = row[i].firstName + " " + row[i].lastName + "<br>" + row[i].team + "/" + row[i].grade};
+      		var student = {action: "sign in", id: row[i].id, computer: row[i].computer, info: row[i].firstName + " " + row[i].lastName + "<br>" + row[i].team + "/" + row[i].grade};
       		socket.emit('update map', student);
       	}
       });
@@ -49,6 +49,8 @@ io.on('connection', function(socket) {
 						db.signInStudent(row, student.computer);
 						student.info = row.firstName + " " + row.lastName + "<br>" + row.team + "/" + row.grade;
 						socket.emit('sign in success', student);
+						student.action = 'sign in';
+						socket.broadcast.emit('update map', student);
 						console.log('check success');
 						console.log('row: ' + JSON.stringify(row));
 						console.log('submitted ' + JSON.stringify(student));
@@ -73,6 +75,8 @@ io.on('connection', function(socket) {
 					console.log('signed out: ' + name + ' at computer #' + student.computer);
     		    	console.log('destination: ' + student.destination);
 					socket.emit('sign out success', name);
+					student.action = 'sign out';
+					socket.broadcast.emit('update map', student);
 				});
 			}
 		});

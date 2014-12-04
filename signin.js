@@ -4,10 +4,14 @@ var selectedComputer = -1;
 var destination = -1;
 
 socket.on('update map', function(student){
-	//if sign in
-		document.getElementById(student.id).innerHTML = "Computer " + student.computer + "<br>" + student.info;
-		document.getElementById(student.id).className = "computer taken";
-	//if sign out
+	if(student.action == "sign in") {
+		document.getElementById(student.computer).innerHTML = "Computer " + student.computer + "<br>" + student.info;
+		document.getElementById(student.computer).className = "computer taken";
+	} else {
+		document.getElementById(student.computer).innerHTML = "Computer " + student.computer;
+		document.getElementById(student.computer).className = "computer"; 
+	}
+		
 });
 
 function signin() {
