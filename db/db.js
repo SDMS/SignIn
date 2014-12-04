@@ -31,15 +31,26 @@ db.serialize(function() {
 //db.close();
 
 module.exports.findStudent = function findStudent(sid, callback){
-		
-		
-		/*db.get('SELECT CASE 1 WHEN EXISTS(SELECT id FROM students WHERE id=?) THEN (SELECT firstName FROM students WHERE id=?) ELSE null END', sid, sid, function(err, row){
-			console.log(row);
-			console.log(err);
-		});*/
-		db.get('SELECT * FROM students WHERE id=?', sid, callback);
-
+	db.get('SELECT * FROM students WHERE id=?', sid, callback);
 }
+module.exports.checkActive = function checkActive(sid, callback){
+	db.get('SELECT * FROM active WHERE id=?', sid, callback);
+}
+module.exports.signInStudent = function signInStudent(row, computer){
+	var date = new Date().toLocaleString();
+	console.log(date);
+	db.run('INSERT INTO active VALUES (?,?,?,?,?,?,?)', row.id, row.firstName, row.lastName, row.grade, row.team, computer, date);
+}
+module.exports.checkActiveComputer = function checkActiveComputer(computer, callback){
+	db.get('SELECT * FROM active WHERE computer=?', computer, callback);
+}
+module.exports.signOutStudent = function signOutStudent(row, destination, callback) {
+	var date = new Date().toLocaleString();
+	db.run('INSERT INTO log VALUES(?,?,?,?,?,?,?,?,?)', row.id, row.firstName, row.lastName, row.grade, row.team, row.computer, row.timeIn, date, destination);
+	db.run('DELETE FROM active WHERE id=?', row.id); 
+	db.get('SELECT * FROM log WHERE id=?', row.id, callback);
+}
+
 
 /*
 function importStudents(){

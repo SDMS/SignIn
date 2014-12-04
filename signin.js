@@ -26,11 +26,12 @@ function signout(){
 
 }
 
-socket.on('sign in success', function(student){
-	console.log('signing in.... ' + JSON.stringify(student));
+socket.on('sign in success', function(message){
+	console.log('signing in.... ' + JSON.stringify(message));
 
-	alert('student id ' + student.id + ' at computer ' + selectedComputer);
+	alert(message.student + ' at computer ' + selectedComputer);
 	// display student's information
+	document.getElementById(selectedComputer).innerHTML = "Computer " + selectedComputer + "<br>" + message.student;
 	document.getElementById(selectedComputer).className = "computer taken";
 	
 	document.getElementById('sid').value = '';
@@ -44,14 +45,20 @@ socket.on('sign in fail', function(err){
 	selectedComputer = -1;
 });
 
-socket.on('sign out success', function(){
-	alert('sign out successful');
+socket.on('sign out success', function(name){
+	alert('sign out successful: ' + name);
 	// change computer to empty
+	document.getElementById(selectedComputer).innerHTML = "Computer " + selectedComputer + "<br>";
     deselectComputer();
     document.getElementById(destination).className = "destination";
     destination = -1;
     });
-
+    
+socket.on('sign out fail', function(err){
+	alert('error: ' + err);
+	deselectComputer();
+	destination = -1;
+});
 
 
 function switchTabStyles(tab){
