@@ -53,7 +53,7 @@ module.exports.signOutStudent = function signOutStudent(row, destination, callba
 }
 
 module.exports.getAllActive = function getAllActive(callback){
-	db.get('SELECT * FROM active', callback);
+	db.all('SELECT * FROM active', callback);
 }
 
 

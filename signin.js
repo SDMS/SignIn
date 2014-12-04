@@ -3,15 +3,22 @@ var socket = io();
 var selectedComputer = -1;
 var destination = -1;
 
+socket.on('update map', function(student){
+	//if sign in
+		document.getElementById(student.id).innerHTML = "Computer " + student.computer + "<br>" + student.info;
+		document.getElementById(student.id).className = "computer taken";
+	//if sign out
+});
+
 function signin() {
 	if(selectedComputer == -1) {
 		alert('Please select a computer');
 		return;
 	}
-	var message = {"id": document.getElementById('sid').value, "computer": selectedComputer};
-	console.log(JSON.stringify(message));
+	var student = {"id": document.getElementById('sid').value, "computer": selectedComputer};
+	console.log(JSON.stringify(student));
 	
-	socket.emit('sign in', message); 	// check if student exists, check if student is already signed in
+	socket.emit('sign in', student); 	// check if student exists, check if student is already signed in
 }
 
 function signout(){
@@ -20,18 +27,18 @@ function signout(){
         return;
     }
     if(confirm("Are you sure you want to sign out?")){ // then student information.
-        var message = {"computer": selectedComputer, "destination": destination};
-        socket.emit('sign out', message)
+        var student = {"computer": selectedComputer, "destination": destination};
+        socket.emit('sign out', student);
     }
 
 }
 
-socket.on('sign in success', function(message){
-	console.log('signing in.... ' + JSON.stringify(message));
+socket.on('sign in success', function(student){
+	console.log('signing in.... ' + JSON.stringify(student));
 
-	alert(message.student + ' at computer ' + selectedComputer);
+	alert(student.info + ' at computer ' + selectedComputer);
 	// display student's information
-	document.getElementById(selectedComputer).innerHTML = "Computer " + selectedComputer + "<br>" + message.student;
+	document.getElementById(selectedComputer).innerHTML = "Computer " + selectedComputer + "<br>" + student.info;
 	document.getElementById(selectedComputer).className = "computer taken";
 	
 	document.getElementById('sid').value = '';

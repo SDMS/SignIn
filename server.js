@@ -20,13 +20,17 @@ io.on('connection', function(socket) {
       // update class map based on active user db
       db.getAllActive(function(err, row){
       	console.log(row);
-      	console.log(err);
+      	console.log(row.length);
+      	for(var i = 0; i < row.length; i++){
+      		var student = {id = row[i].id, computer = row[i].computer, info = row[i].firstName + " " + row[i].lastName + "<br>" + row[i].team + "/" + row[i].grade};
+      		socket.emit('update map', student);
+      	}
       });
 	
-	socket.on('sign in', function(message){
+	socket.on('sign in', function(student){
 		console.log("received data:");
-		console.log(message);
-		db.checkActive(message.id, function(err, row){
+		console.log(student);
+		db.checkActive(student.id, function(err, row){
 			if(err != null){
 				console.log(err);
 				return;
@@ -36,27 +40,27 @@ io.on('connection', function(socket) {
 				console.log('check fail: Already signed in.');
 			} 
 			else { 
-				db.findStudent(message.id, function(err, row){ 
+				db.findStudent(student.id, function(err, row){ 
 					if(row == undefined) { // student already signed in
 						socket.emit('sign in fail', "Student ID not in database.");
 						console.log('check fail: Student ID not in database.');
 					} 
 					else {
-						db.signInStudent(row, message.computer);
-						message.student = row.firstName + " " + row.lastName + "<br>" + row.team + "/" + row.grade;
-						socket.emit('sign in success', message);
+						db.signInStudent(row, student.computer);
+						student.info = row.firstName + " " + row.lastName + "<br>" + row.team + "/" + row.grade;
+						socket.emit('sign in success', student);
 						console.log('check success');
 						console.log('row: ' + JSON.stringify(row));
-						console.log('submitted ' + JSON.stringify(message));
+						console.log('submitted ' + JSON.stringify(student));
 					}
 				});			
 			}
 		});
 	});
 	
-	socket.on('sign out', function(message){
+	socket.on('sign out', function(student){
 		// check to make sure student isn't already signed out
-		db.checkActiveComputer(message.computer, function(err, row){
+		db.checkActiveComputer(student.computer, function(err, row){
 			if(row == undefined) { // student not signed in
 				console.log(err + " " + row);
 				socket.emit('sign out fail', 'student not signed in');
@@ -64,10 +68,10 @@ io.on('connection', function(socket) {
 			}
 			else {
 				// copy data from lab table, record time and destination and remove from lab table
-				db.signOutStudent(row, message.destination, function(err, row){
+				db.signOutStudent(row, student.destination, function(err, row){
 					var name = row.firstName + " " + row.lastName;
-					console.log('signed out: ' + name + ' at computer #' + message.computer);
-    		    	console.log('destination: ' + message.destination);
+					console.log('signed out: ' + name + ' at computer #' + student.computer);
+    		    	console.log('destination: ' + student.destination);
 					socket.emit('sign out success', name);
 				});
 			}
