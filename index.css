@@ -50,7 +50,7 @@ body, html {
         top: 0;
       }
        
-      [id^=sign]:checked + label {
+      [name=tabs]:checked + label {
         background: #72bfc4;
         opacity: 1;
         filter: alpha(opacity=100);
@@ -59,7 +59,7 @@ body, html {
 
       }
        
-      [id^=sign]:checked ~ [class=tab-content] {
+      [name=tabs]:checked ~ [class=tab-content] {
           display: block;
       }
       .tab-content{
