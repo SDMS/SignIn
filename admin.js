@@ -19,8 +19,7 @@ function loadCsv(){
 	// if no file uploaded
 	// please upload your csv
 	
-	var file = document.getElementById("csv").value; //get file 
-	console.log(file);
+	var file; //change this lol
 	socket.emit('load csv', file);
 }
 
