@@ -168,4 +168,20 @@ body, html {
     .destination.selected:hover {
         border: 2px solid #ccc;
     }
+    
+    .action-label {
+    	font-size: 1.5em;
+    	margin: 15px;
+    	padding: 5px;
+    	border: 1px #fff dashed;
+    }
+    .accordion {
+    	display:none;
+    }
+    
+    .accordion.active {
+    	display:block;
+    	margin: 15px;
+    	padding: 5px;
+    }
 

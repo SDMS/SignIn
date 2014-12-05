@@ -17,6 +17,9 @@ app.get('/signin.js', function(req, res) {
 app.get('/admin.html', function(req, res) {
 	res.sendFile(__dirname + '/admin.html');
 });
+app.get('/admin.js', function(req, res) {
+	res.sendFile(__dirname + '/admin.js');
+});
 
 io.on('connection', function(socket) {
 	console.log('a user connected' + "\n");

@@ -2,7 +2,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/index.css">
 <script src="/socket.io/socket.io.js"></script>
-<script src="/signin.js"></script>
+<script src="/admin.js"></script>
 </head>
 <body>
 
@@ -13,10 +13,29 @@
             <label for="admin">Admin</label>
             
             <div class="tab-content">
-        		Upload CSV
-        		Add a New Student
-        		Show Recent Log
-        		Clear All
+            	
+            	<div class="action-label" for="upload" onClick="toggleAccordion('upload')">Upload CSV</div>
+        		<div class="accordion" id="upload">
+        			Upload CSV<br>
+        			<input type="file" id="csv" />
+        			<button>submit</button>
+        		</div>
+        		
+        		<div class="action-label" for="addnew" onClick="toggleAccordion('addnew')">Add a New Student</div>
+        		<div class="accordion" id="addnew">
+        			Add a New Student
+        		</div>
+        		
+        		<div class="action-label" for="showrecent" onClick="toggleAccordion('showrecent')">Show Recent Log</div>
+        		<div class="accordion" id="showrecent">
+        			Show Recent Log
+        		</div>
+        		
+        		<div class="action-label" for="clear" onClick="toggleAccordion('clear')">Clear All</div>
+        		<div class="accordion" id="clear">
+        			Clear All
+        		</div>
+        		
             </div>
             
         </li>
