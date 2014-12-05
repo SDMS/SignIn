@@ -175,6 +175,9 @@ body, html {
     	padding: 5px;
     	border: 1px #fff dashed;
     }
+    .action-label:hover {
+    	background: #92dfe4;
+    }
     .accordion {
     	display:none;
     }

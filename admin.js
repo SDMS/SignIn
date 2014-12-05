@@ -12,7 +12,15 @@ function toggleAccordion(id){
 		}
 		document.getElementById(id).className = "accordion active";
 		active = id;
-	}
-	
-	
+	}	
 }
+
+function loadCsv(){
+	// if no file uploaded
+	// please upload your csv
+	
+	var file = document.getElementById("csv").value; //get file 
+	console.log(file);
+	socket.emit('load csv', file);
+}
+

@@ -1,10 +1,10 @@
 var csv = require('ya-csv');
 
 // test
-var db = require('./db/db.js');
-var f = 'db/2015_Sign_In.csv';
+//var db = require('./db/db.js');
+//var f = 'db/2015_Sign_In.csv';
 
-var loadCsv = function(file, callback) {
+module.exports.loadCsv = function loadCsv(file, callback) {
 	var reader = csv.createCsvFileReader(file, {
 		columnsFromHeader: true,
 		'separator': ',',
@@ -17,6 +17,7 @@ var loadCsv = function(file, callback) {
 	
 	//reader.setColumnNames(['id', 'firstName', 'lastName', 'grade', 'team']);
 	reader.addListener('data', function(data) {
+		// validate columns
 		if(data.id != '') { 
 			allEntries.push(data);
 			console.log(data);
@@ -30,4 +31,4 @@ var loadCsv = function(file, callback) {
 };
 
 // test
-loadCsv(f, db.importStudents);
+// loadCsv(f, db.importStudents);
