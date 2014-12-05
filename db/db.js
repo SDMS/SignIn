@@ -56,21 +56,16 @@ module.exports.getAllActive = function getAllActive(callback){
 	db.all('SELECT * FROM active', callback);
 }
 
-
-/*
-function importStudents(){
+module.exports.importStudents = function importStudents(arr){
     db.serialize(function() {
-        var csv = "./2015_Sign_In.csv";
         var stmt = db.prepare("INSERT INTO students VALUES (?,?,?,?,?)");
         
-        stmt.run(1,"student", "one",7,"team");
-        stmt.run(2,"student", "two",7,"team");
-        stmt.run(3,"student", "three",7,"team");
-        
-        
+        for(var i = 0; i < arr.length; i++){
+        	var student = arr[i];
+	        stmt.run(student.id, student.firstName, student.lastName, student.grade, student.team);
+
+    	}
+    	
         stmt.finalize();
-    }
-}*/
-
-
-
+    });
+}
