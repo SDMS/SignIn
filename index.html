@@ -12,27 +12,35 @@
         <input type="radio" checked name="tabs" id="signin" onClick="switchTabStyles(this.id)">
             <label for="signin">Sign In</label>
             <div class="tab-content">
-                Sign In<br>
-                Type your Student ID or scan your barcode. Then, select an empty computer from the class map, and click "Go". <br>
-                <br>
-                <input id="sid" type="text" maxlength="8" autofocus /> <button onclick="signin()">Go</button> 
+                1. Type your Student ID or scan your barcode.<br>
+                <input id="sid" type="text" maxlength="8" autofocus /><br>
+                2. Choose a computer ---><br>
+                3. Click Go:
+                <div class="button" onclick="signin()">Go</div> 
             </div>
         </li>
     <li>
         <input type="radio" name="tabs" id="signout" onClick="switchTabStyles(this.id)">
             <label for="signout">Sign Out</label>
             <div class="tab-content">
-                Sign Out<br>
-                Select your name from the class map. Then select your destination, and click "Go".<br>
-                <div class="destination" id="cafeteria" onClick="chooseDestination(this.id)">Cafeteria</div>
-                <div class="destination" id="classroom" onClick="chooseDestination(this.id)">Classroom</div>
-                <div class="destination" id="library" onClick="chooseDestination(this.id)">Media Center</div>
-                <div class="destination" id="office" onClick="chooseDestination(this.id)">Office</div>
-                <div class="destination" id="nurse" onClick="chooseDestination(this.id)">Nurse</div>
-                <div class="destination" id="locker" onClick="chooseDestination(this.id)">Locker</div>
-                <div class="destination" id="bathroom" onClick="chooseDestination(this.id)">Bathroom</div>
-                <div class="destination" id="water" onClick="chooseDestination(this.id)">Water</div>
-                <button onclick="signout()">Go</button>
+                1. Click on your name ---><br>
+                2. Select your destination:<br>
+                <div id="destination-container">
+                <div class="row-destinations1">
+                	<div class="destination" id="cafeteria" onClick="chooseDestination(this.id)">Cafeteria</div>
+                	<div class="destination" id="classroom" onClick="chooseDestination(this.id)">Classroom</div>
+                	<div class="destination" id="mediacenter" onClick="chooseDestination(this.id)">Media Center</div>
+                	<div class="destination" id="office" onClick="chooseDestination(this.id)">Office</div>
+                </div>
+                <div class="row-destinations2">
+	                <div class="destination" id="nurse" onClick="chooseDestination(this.id)">Nurse</div>
+	                <div class="destination" id="locker" onClick="chooseDestination(this.id)">Locker</div>
+	                <div class="destination" id="bathroom" onClick="chooseDestination(this.id)">Bathroom</div>
+	                <div class="destination" id="water" onClick="chooseDestination(this.id)">Water</div>
+	            </div>
+	            </div>
+	            3. Click Go: 
+                <div class="button" onclick="signout()">Go</div>
             </div>
     </li>
 </ul>
