@@ -69,3 +69,9 @@ module.exports.importStudents = function importStudents(arr){
         stmt.finalize();
     });
 }
+
+module.exports.addStudent = function addStudent(student){
+	
+	db.run("INSERT INTO students VALUES (?,?,?,?,?)", student.id, student.firstName, student.lastName, student.grade, student.team);
+
+}

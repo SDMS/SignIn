@@ -23,3 +23,9 @@ function loadCsv(){
 	socket.emit('load csv', file);
 }
 
+function addNewStudent(){
+	// check if fields are empty
+	var student = {id: document.getElementById("addnew-sid").value, firstName: document.getElementById("addnew-first").value, lastName: document.getElementById("addnew-last").value, team: document.getElementById("addnew-team").value, grade: document.getElementById("addnew-grade").value };
+	socket.emit('add new student', student);
+	console.log(student);
+}

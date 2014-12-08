@@ -14,7 +14,7 @@ app.get('/index.css', function(req, res) {
 app.get('/signin.js', function(req, res) {
 	res.sendFile(__dirname + '/signin.js');
 });
-app.get('/admin.html', function(req, res) {
+app.get('/admin', function(req, res) {
 	res.sendFile(__dirname + '/admin.html');
 });
 app.get('/admin.js', function(req, res) {
@@ -88,6 +88,17 @@ io.on('connection', function(socket) {
 	socket.on('load csv', function(file){
 		csv.loadCsv(file, db.importStudents());
 	});
+	
+	socket.on('add new student', function(student){
+		db.findStudent(student.id, function(err, row){
+			if(row != undefined) {
+				console.log("student already exists in database");
+			} else {
+				db.addStudent(student);
+			}
+		});
+	});
+
 });
 
 var server = http.listen(3000, function() {
