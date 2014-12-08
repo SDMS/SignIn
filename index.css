@@ -147,7 +147,7 @@ body, html {
       .computer {
         position: relative;
         width: 75%;
-        height: 4.5em;
+        height: 63px;
         border:2px solid #000;
         margin:5px;
         margin-left:auto;
@@ -159,7 +159,10 @@ body, html {
         overflow-x:hidden;
         overflow-y:hidden;
         white-space: nowrap;
+        font-size: 4em;
+		text-align: center;
       }
+
 	.signin .computer:hover {
 	border: 2px ridge #8092e1;
 	}
@@ -167,6 +170,7 @@ body, html {
         opacity: .6;
         filter: alpha(opacity=60);      
         border: 2px solid #000;
+        font-size: 2em;
 	}
 
 	.signin .computer.selected {
@@ -179,7 +183,8 @@ body, html {
 	}
       .signout .computer.taken {
         opacity: 1;
-        filter: alpha(opacity=100);      
+        filter: alpha(opacity=100);
+        font-size: 2em;      
 	}
 	.signout .computer:hover{
 	border: 2px solid #000;

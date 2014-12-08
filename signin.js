@@ -5,10 +5,10 @@ var destination = -1;
 
 socket.on('update map', function(student){
 	if(student.action == "sign in") {
-		document.getElementById(student.computer).innerHTML = "Computer " + student.computer + "<br>" + student.info;
+		document.getElementById(student.computer).innerHTML = student.info;
 		document.getElementById(student.computer).className = "computer taken";
 	} else {
-		document.getElementById(student.computer).innerHTML = "Computer " + student.computer;
+		document.getElementById(student.computer).innerHTML = student.computer;
 		document.getElementById(student.computer).className = "computer"; 
 	}
 		
@@ -30,19 +30,16 @@ function signout(){
         alert('Please click on your name and select your destination');
         return;
     }
-    if(confirm("Are you sure you want to sign out?")){ // then student information.
-        var student = {"computer": selectedComputer, "destination": destination};
-        socket.emit('sign out', student);
-    }
-
+    var student = {"computer": selectedComputer, "destination": destination};
+    socket.emit('sign out', student);
 }
 
 socket.on('sign in success', function(student){
 	console.log('signing in.... ' + JSON.stringify(student));
 
-	alert(student.info + ' at computer ' + selectedComputer);
+//	alert(student.info + ' at computer ' + selectedComputer);
 	// display student's information
-	document.getElementById(selectedComputer).innerHTML = "Computer " + selectedComputer + "<br>" + student.info;
+	document.getElementById(selectedComputer).innerHTML = student.info;
 	document.getElementById(selectedComputer).className = "computer taken";
 	
 	document.getElementById('sid').value = '';
@@ -59,7 +56,7 @@ socket.on('sign in fail', function(err){
 socket.on('sign out success', function(name){
 	alert('sign out successful: ' + name);
 	// change computer to empty
-	document.getElementById(selectedComputer).innerHTML = "Computer " + selectedComputer + "<br>";
+	document.getElementById(selectedComputer).innerHTML = selectedComputer;
     deselectComputer(); // this doesn't do what i think it should do
     document.getElementById(destination).className = "destination";
     destination = -1;
