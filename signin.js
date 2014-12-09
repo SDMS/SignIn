@@ -57,7 +57,6 @@ socket.on('sign in fail', function(err){
 });
 
 socket.on('sign out success', function(name){
-	alert('sign out successful: ' + name);
 	// change computer to empty
 	document.getElementById(selectedComputer).innerHTML = selectedComputer;
     deselectComputer(); // this doesn't do what i think it should do
