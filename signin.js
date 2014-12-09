@@ -19,7 +19,10 @@ function signin() {
 		alert('Please select a computer');
 		return;
 	}
-	var student = {"id": document.getElementById('sid').value, "computer": selectedComputer};
+	var sid = document.getElementById('sid').value;
+	if(sid.charAt(0) == 'P') sid = sid.substring(1);
+
+	var student = {"id": sid, "computer": selectedComputer};
 	console.log(JSON.stringify(student));
 	
 	socket.emit('sign in', student); 	// check if student exists, check if student is already signed in
