@@ -200,15 +200,19 @@ body, html {
 	#destination-container {
 		position: relative;
 		height: 7em;
+		width:100%;
+		white-space: nowrap;
+		top:0%
 	}
 
     .destination {
         position:relative;
-		margin: 10px;
+	margin: 10px;
         background: #fff;
         border: 2px solid #3b356b;
-        width:48%;
         text-align:center;
+	height:1.3em;
+	overflow:hidden;
     }
     
     .destination:hover {
@@ -223,15 +227,15 @@ body, html {
     }
 
 	.row-destinations1{
-		position:relative;
+		position:absolute;
 		left: 0%;
+		width: 50%
 	}
 	
 	.row-destinations2{
-		position: relative;
-		top: -224px;
-		left: 50%;
-
+		position: absolute;
+		right: 0%;
+		width: 50%;
 	}
 
 	.action {
