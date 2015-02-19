@@ -14,6 +14,16 @@ socket.on('update map', function(student){
 		
 });
 
+document.onkeydown = function(e) {
+	if(typeof e == 'undefined' && window.event) {
+		e = window.event;
+	}
+	if(e.keyCode == 13) {
+		if(document.getElementById('map').className == 'signin') { signin(); }
+		else { signout(); }
+	}
+}
+
 function signin() {
 	if(selectedComputer == -1) {
 		alert('Please select a computer');
