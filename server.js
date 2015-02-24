@@ -30,6 +30,8 @@ io.on('connection', function(socket) {
       		socket.emit('update map', student);
       	}
       });
+
+	socket.on('disconnect', function() { console.log('disconnected'); });
 	
 	socket.on('sign in', function(student){
 		console.log("received data:");

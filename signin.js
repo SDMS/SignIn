@@ -24,7 +24,15 @@ document.onkeydown = function(e) {
 	}
 }
 
+function ensureConnection() {
+	if(!socket.connected) {
+		socket.connect();
+		alert("reconnected...");
+	}
+}
+
 function signin() {
+	ensureConnection();
 	if(selectedComputer == -1) {
 		alert('Please select a computer');
 		return;
@@ -39,6 +47,7 @@ function signin() {
 }
 
 function signout(){
+	ensureConnection();
     if(selectedComputer == -1 | destination == -1) {
         alert('Please click on your name and select your destination');
         return;
