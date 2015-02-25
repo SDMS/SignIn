@@ -1,5 +1,6 @@
 *.db
 *.bluej
+*.komodoproject
 *.class
 *.ctxt
 /node_modules
