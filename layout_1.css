@@ -123,9 +123,8 @@ body, html {
 
 
       #map{
-        position:absolute;
-        right:1%;
-        width:66%;
+        position:relative;
+        text-align: center;
         color:white;
         font-size:14px;
       }
