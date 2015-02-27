@@ -2,23 +2,25 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var db = require('./db/db.js');
-var csv = require('./csv.js');
+var db = require('./js/db.js');
 
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/index.html');
-});
-app.get('/index.css', function(req, res) {
-	res.sendFile(__dirname + '/index.css');
-});
-app.get('/signin.js', function(req, res) {
-	res.sendFile(__dirname + '/signin.js');
+	res.sendFile(__dirname + 'lab_021/index.html');
 });
 app.get('/admin', function(req, res) {
-	res.sendFile(__dirname + '/admin.html');
+	res.sendFile(__dirname + 'lab_021/admin.html');
+});
+app.get('/index.css', function(req, res) {
+	res.sendFile(__dirname + 'css/layout_1.css');
+});
+app.get('/signin.js', function(req, res) {
+	res.sendFile(__dirname + 'js/signin.js');
+});
+app.get('/layout1.js', function(req, res) {
+	res.sendFile(__dirname + 'js/layout1.js');
 });
 app.get('/admin.js', function(req, res) {
-	res.sendFile(__dirname + '/admin.js');
+	res.sendFile(__dirname + 'js/admin.js');
 });
 
 io.on('connection', function(socket) {
@@ -88,7 +90,7 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('load csv', function(file){
-		csv.loadCsv(file, db.importStudents());
+		console.log("CSV not implemented yet");
 	});
 	
 	socket.on('add new student', function(student){
