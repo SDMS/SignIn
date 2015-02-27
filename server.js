@@ -5,22 +5,22 @@ var io = require('socket.io')(http);
 var db = require('./js/db.js');
 
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + 'lab_021/index.html');
+	res.sendFile(__dirname + '/lab_021/index.html');
 });
 app.get('/admin', function(req, res) {
-	res.sendFile(__dirname + 'lab_021/admin.html');
+	res.sendFile(__dirname + '/lab_021/admin.html');
 });
 app.get('/index.css', function(req, res) {
-	res.sendFile(__dirname + 'css/layout_1.css');
+	res.sendFile(__dirname + '/css/layout_1.css');
 });
 app.get('/signin.js', function(req, res) {
-	res.sendFile(__dirname + 'js/signin.js');
+	res.sendFile(__dirname + '/js/signin.js');
 });
 app.get('/layout1.js', function(req, res) {
-	res.sendFile(__dirname + 'js/layout1.js');
+	res.sendFile(__dirname + '/js/layout1.js');
 });
 app.get('/admin.js', function(req, res) {
-	res.sendFile(__dirname + 'js/admin.js');
+	res.sendFile(__dirname + '/js/admin.js');
 });
 
 io.on('connection', function(socket) {

@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" href="/index.css">
 <script src="/socket.io/socket.io.js"></script>
 <script src="/signin.js"></script>
+<script src="/layout1.js"></script>
 <title>SDMS Sign In: Room 021</title>
 </head>
 <body>
@@ -13,36 +14,35 @@
         <input type="radio" checked name="tabs" id="signin" onClick="switchTabStyles(this.id)">
             <label for="signin">Sign In</label>
             <div class="tab-content">
-                1. Type your Student ID or scan your barcode.<br>
-                <input id="sid" type="text" pattern="[0-9]*" maxlength="8" autofocus /><br>
-                2. Choose a computer ---><br>
-                3. Click Go:
-                <div class="button" onclick="signin()">Go</div> 
+                Student ID: <input id="sid" type="text" maxlength="8" autofocus /> <div class="button" onclick="signin()">Go</div> 
             </div>
-        </li>
+    </li>
     <li>
-        <input type="radio" name="tabs" id="signout" onClick="switchTabStyles(this.id)">
-            <label for="signout">Sign Out</label>
-            <div class="tab-content">
-                1. Click on your name ---><br>
-                2. Select your destination:<br>
-                <div id="destination-container">
+    <input type="radio" name="tabs" id="signout" onClick="switchTabStyles(this.id)">
+    <label for="signout">Sign Out</label>
+    <div class="tab-content">
+        <div class="accordion active">
+             Click on your name to sign out!
+        </div>
+        <div class="accordion">
+            <div id="destination-container">
                 <div class="row-destinations1">
-                	<div class="destination" id="cafeteria" onClick="chooseDestination(this.id)">Cafeteria</div>
-                	<div class="destination" id="classroom" onClick="chooseDestination(this.id)">Classroom</div>
-                	<div class="destination" id="mediacenter" onClick="chooseDestination(this.id)">Media Center</div>
-                	<div class="destination" id="office" onClick="chooseDestination(this.id)">Office</div>
+                    <div class="destination" id="cafeteria" onClick="chooseDestination(this.id)">Cafeteria</div>
+                    <div class="destination" id="classroom" onClick="chooseDestination(this.id)">Classroom</div>
+                    <div class="destination" id="mediacenter" onClick="chooseDestination(this.id)">Media Center</div>
+                    <div class="destination" id="office" onClick="chooseDestination(this.id)">Office</div>
                 </div>
                 <div class="row-destinations2">
-	                <div class="destination" id="nurse" onClick="chooseDestination(this.id)">Nurse</div>
-	                <div class="destination" id="locker" onClick="chooseDestination(this.id)">Locker</div>
-	                <div class="destination" id="bathroom" onClick="chooseDestination(this.id)">Bathroom</div>
-	                <div class="destination" id="water" onClick="chooseDestination(this.id)">Water</div>
-	            </div>
-	            </div>
-	            3. Click Go: 
-                <div class="button" onclick="signout()">Go</div>
+                    <div class="destination" id="nurse" onClick="chooseDestination(this.id)">Nurse</div>
+                    <div class="destination" id="locker" onClick="chooseDestination(this.id)">Locker</div>
+                    <div class="destination" id="bathroom" onClick="chooseDestination(this.id)">Bathroom</div>
+                    <div class="destination" id="water" onClick="chooseDestination(this.id)">Water</div>
+                </div>
+                <div class="button" onclick="chooseComputer(selectedComputer)">Cancel</div>
             </div>
+            <div class="button" onclick="signout()">Go</div>
+        </div>
+    </div>
     </li>
 </ul>
 <div id="map" class="signin">
