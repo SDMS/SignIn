@@ -20,6 +20,8 @@ function chooseComputer(id) {
      deselectComputer();
      if(id == selectedComputer){
           selectedComputer = -1;
+          document.getElementById("destination-accordion").className = "accordion";
+          document.getElementById("signout-instructions").className = "accordion active";
           //hide accordion again
           return;
      }
@@ -34,6 +36,8 @@ function chooseComputer(id) {
                     selectedComputer = id;
                     document.getElementById(id).className = "computer taken selected";
                     //show accordion
+                    document.getElementById("signout-instructions").className = "accordion";
+                    document.getElementById("destination-accordion").className = "accordion active";
 		}
 	}
 }
