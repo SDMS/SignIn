@@ -11,7 +11,6 @@
 	"dependencies": {
 		"express": "*",
 		"socket.io": "*",
-		"sqlite3": "*",
-		"ya-csv": "*"
+		"sqlite3": "*"
 	}
 }
