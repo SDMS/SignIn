@@ -43,12 +43,12 @@ input {
 .tabs label {
           z-index: 3;
           width: 18vw;
+          height: 10vh;
+          text-align: center;
           display: block;
-          margin: 3px;
-          padding: 10px 20px;
           background: #3A4B6A;
           color: #4F778C;
-          font-size: 4vw;
+          font-size: 7vh;
           position: relative;
           top: 0px;
 }
@@ -74,7 +74,7 @@ input {
           display: none;
           text-align: right;
           width: 100%;
-          height: 2.5em;
+          height: 10vh;
           font-size: 30px;
           background: #72bfc4;
           color: #3b356b;
