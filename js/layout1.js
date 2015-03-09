@@ -5,12 +5,19 @@ function switchTabStyles(tab){
 
 }
 
+function switchAccordion(id){
+    document.getElementsByClassName('accordion active').item(0).className = "accordion";
+    document.getElementById(id).className = "accordion active";
+}
+
 function deselectComputer(){
     if(selectedComputer != -1){
-        if(document.getElementById(selectedComputer).className == "computer taken selected"){
-            document.getElementById(selectedComputer).className = "computer taken";
+	var computer = document.getElementById(selectedComputer);
+        if(computer.className == "computer taken selected"){
+            computer.className = "computer taken";
+	    switchAccordion("signout-instructions");
         } else {
-            document.getElementById(selectedComputer).className = "computer";
+           computer.className = "computer";
         }
 
     }
@@ -20,14 +27,11 @@ function chooseComputer(id) {
      deselectComputer();
      if(id == selectedComputer){
           selectedComputer = -1;
-          document.getElementById("destination-accordion").className = "accordion";
-          document.getElementById("signout-instructions").className = "accordion active";
-          //hide accordion again
           return;
      }
 	if(document.getElementById("signin").checked){
 		if(document.getElementById(id).className != "computer taken") {
-			// select new computer
+		 // select new computer
                     selectedComputer = id;
                     document.getElementById(id).className = "computer selected";
 		}
@@ -36,8 +40,7 @@ function chooseComputer(id) {
                     selectedComputer = id;
                     document.getElementById(id).className = "computer taken selected";
                     //show accordion
-                    document.getElementById("signout-instructions").className = "accordion";
-                    document.getElementById("destination-accordion").className = "accordion active";
+		    switchAccordion("signout-options");
 		}
 	}
 }

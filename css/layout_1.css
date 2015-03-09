@@ -239,6 +239,8 @@ input {
 
 .accordion.active {
           display:block;
+          float: right;
+          width: 500px;
           margin: 15px;
           padding: 5px;
 }

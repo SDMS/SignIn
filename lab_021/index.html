@@ -24,7 +24,7 @@
         <div id="signout-instructions" class="accordion active">
              Click on your name to sign out!
         </div>
-        <div id="destination-accordion" class="accordion">
+        <div id="signout-options" class="accordion">
             <div id="destination-container">
                 <div class="row-destinations1">
                     <div class="destination" id="cafeteria" onClick="chooseDestination(this.id)">Cafeteria</div>
@@ -38,9 +38,8 @@
                     <div class="destination" id="bathroom" onClick="chooseDestination(this.id)">Bathroom</div>
                     <div class="destination" id="water" onClick="chooseDestination(this.id)">Water</div>
                 </div>
-                <div class="button" onclick="chooseComputer(selectedComputer)">Cancel</div>
             </div>
-            <div class="button" onclick="signout()">Go</div>
+            <div class="button" onclick="chooseComputer(selectedComputer)">Cancel</div> <div class="button" onclick="signout()">Go</div>
         </div>
     </div>
     </li>
