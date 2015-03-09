@@ -9,6 +9,9 @@ function switchAccordion(id){
     document.getElementsByClassName('accordion active').item(0).className = "accordion";
     document.getElementById(id).className = "accordion active";
 }
+socket.on('sign out success', function(name){
+    switchAccordion("signout-instructions");
+});
 
 function deselectComputer(){
     if(selectedComputer != -1){
