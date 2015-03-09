@@ -42,12 +42,13 @@ input {
 
 .tabs label {
           z-index: 3;
+          width: 18vw;
           display: block;
           margin: 3px;
           padding: 10px 20px;
           background: #3A4B6A;
           color: #4F778C;
-          font-size: 3em;
+          font-size: 4vw;
           position: relative;
           top: 0px;
 }
@@ -238,9 +239,11 @@ input {
 }
 
 .accordion.active {
+          position: relative;
+          z-index: 3;
           display:block;
           float: right;
-          width: 500px;
+          width: 50%;
           margin: 15px;
           padding: 5px;
 }
