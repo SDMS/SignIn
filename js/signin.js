@@ -34,7 +34,6 @@ function ensureConnection() {
 }
 
 function signin() {
-	ensureConnection();
 	if(selectedComputer == -1) {
 		alert('Please select a computer');
 		return;
