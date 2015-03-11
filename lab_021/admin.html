@@ -1,0 +1,64 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/index.css">
+<script src="/socket.io/socket.io.js"></script>
+<script src="/admin.js"></script>
+</head>
+<body>
+
+
+<ul class="tabs">
+    <li>
+        <input type="radio" checked name="tabs" id="admin">
+            <label for="admin">Admin</label>
+            
+            <div class="tab-content">
+            	
+            	<div class="action-label" for="upload" onClick="toggleAccordion('upload')">Upload CSV</div>
+        		<div class="action-label" for="addnew" onClick="toggleAccordion('addnew')">Add a New Student</div>    		
+        		<div class="action-label" for="showrecent" onClick="toggleAccordion('showrecent')">Show Recent Log</div>
+        		<div class="action-label" for="clear" onClick="toggleAccordion('clear')">Clear All</div>
+
+        		
+            </div>
+            
+        </li>
+        
+</ul>
+
+<div class="action">
+	<div class="accordion" id="upload">
+    	<input type="file" id="csv" />
+       	<button onClick="loadCsv()">Submit</button>
+	</div>
+	<div class="accordion" id="addnew">
+    	Student ID # <input type="text" id="addnew-sid" /><br>
+    	First Name <input type="text" id="addnew-first" /><br>
+        Last Name <input type="text" id="addnew-last" /><br>
+        Team <select id="addnew-team">
+        	<option value="Crimson">Crimson</option>
+        	<option value="Green">Green</option>
+        	<option value="Orange">Orange</option>
+        	<option value="Indigo">Indigo</option>
+        	<option value="Magenta">Magenta</option>
+        	<option value="Turquoise">Turquoise</option>
+        </select><br>
+        Grade <select id="addnew-grade">
+        	<option value="7">Seven</option>
+        	<option value="8">Eight</option>
+        </select><br>
+        <button onClick="addNewStudent()">Submit</button>
+    </div>
+    
+    <div class="accordion" id="showrecent">
+    show recent
+    </div>
+    
+    <div class="accordion" id="clear">
+    clear
+    </div>
+</div>
+
+</body>
+</html>
+
