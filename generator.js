@@ -20,3 +20,12 @@ var classroom = {
 	}
 	
 };
+
+/*
+ *school name
+ *classroom name
+ *layout option (maybe)
+ *set amount of seats?
+ *	# of seats
+
+*/
