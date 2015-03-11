@@ -2,6 +2,7 @@ var socket = io();
 
 var selectedComputer = -1;
 var destination = -1;
+var timeout = window.setTimeout(ensureConnection, 1200000);
 
 socket.on('update map', function(student){
 	if(student.action == "sign in") {
@@ -25,10 +26,11 @@ document.onkeydown = function(e) {
 }
 
 function ensureConnection() {
-	if(!socket.connected) {
-		socket.connect();
-		alert("reconnected...");
-	}
+	socket.connect();
+	console.log("reconnecting...")
+	window.clearTimeout(timeout);
+	timeout = window.setTimeout(ensureConnection, 1200000);
+	
 }
 
 function signin() {
