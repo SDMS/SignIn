@@ -160,7 +160,7 @@ body, html {
 }
 
 .computer.taken { font-size: 4vh; }
-.computer.taken.selected { background:#7082d1;}
+.computer.selected { background:#7082d1;}
 
 .signin .computer:hover { border: 2px ridge #8092e1; }
 .signin .computer.taken {

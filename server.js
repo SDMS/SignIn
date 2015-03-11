@@ -105,7 +105,7 @@ io.on('connection', function(socket) {
 
 });
 
-var server = http.listen(2000, function() {
+var server = http.listen(3000, function() {
 	var host = server.address().address;
 	var port = server.address().port;
 
