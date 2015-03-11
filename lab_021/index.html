@@ -14,7 +14,7 @@
         <input type="radio" checked name="tabs" id="signin" onClick="switchTabStyles(this.id)">
             <label for="signin">Sign In</label>
             <div class="tab-content">
-                Student ID: <input id="sid" type="text" maxlength="8" autofocus /> <div class="button" onclick="signin()">Go</div> 
+                Student ID: <input id="sid" type="text" pattern="[0-9]*" maxlength="8" autofocus /> <div class="button" onclick="signin()">Go</div> 
             </div>
     </li>
     <li>
