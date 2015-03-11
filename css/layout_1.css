@@ -83,6 +83,10 @@ body, html {
           box-sizing: border-box;
 }
 
+.tab-content input {
+          font-size: 4vmin;
+}
+
 .accordion {
           display:none;
 }
