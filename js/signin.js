@@ -2,7 +2,7 @@ var socket = io();
 
 var selectedComputer = -1;
 var destination = -1;
-var timeout = window.setTimeout(ensureConnection, 1200000);
+var timeout = window.setTimeout(ensureConnection, 360000);
 
 socket.on('update map', function(student){
 	if(student.action == "sign in") {
@@ -29,7 +29,7 @@ function ensureConnection() {
 	socket.connect();
 	console.log("reconnecting...")
 	window.clearTimeout(timeout);
-	timeout = window.setTimeout(ensureConnection, 1200000);
+	timeout = window.setTimeout(ensureConnection,360000);
 	
 }
 
