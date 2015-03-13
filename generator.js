@@ -37,3 +37,9 @@ var layout_1 = {
 }
 
 var testRooms = require('./rooms.js');
+
+//set CSS
+//set supplemental js
+//tab content of sign in option
+//tab content of sign out option
+//populate classroom map
