@@ -1,8 +1,26 @@
-var socket = io();
+var socket = io.connect(null, {'reconnection limit': 3000, 'max reconnection attempts': Number.MAX_VALUE, 'connect timeout':7000});
 
 var selectedComputer = -1;
 var destination = -1;
-var timeout = window.setTimeout(ensureConnection, 1200000);
+
+var active = true;
+var timeoutID = window.setTimeout(sleep, 900000);
+
+function sleep(){
+        active = false;
+        socket.disconnect();
+}
+
+window.addEventListener("keypress", checkActive, false);
+
+function checkActive(){
+        if(!active){
+                socket.connect();
+                active = true;
+                window.clearTimeout(timeoutID);
+        }
+
+}
 
 socket.on('update map', function(student){
 	if(student.action == "sign in") {
@@ -25,14 +43,6 @@ document.onkeydown = function(e) {
 	}
 }
 
-function ensureConnection() {
-	socket.connect();
-	console.log("reconnecting...")
-	window.clearTimeout(timeout);
-	timeout = window.setTimeout(ensureConnection, 1200000);
-	
-}
-
 function signin() {
 	if(selectedComputer == -1) {
 		alert('Please select a computer');
@@ -48,7 +58,6 @@ function signin() {
 }
 
 function signout(){
-	ensureConnection();
     if(selectedComputer == -1 | destination == -1) {
         alert('Please click on your name and select your destination');
         return;
