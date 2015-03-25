@@ -4,18 +4,20 @@ var selectedComputer = -1;
 var destination = -1;
 
 var active = true;
-var timeoutID = window.setTimeout(sleep, 900000);
+var timeoutID = window.setTimeout(sleep, 600000);
 
 function sleep(){
         active = false;
         socket.disconnect();
+        alert("idle");
 }
 
-window.addEventListener("keypress", checkActive, false);
+window.addEventListener("click", checkActive, false);
 
 function checkActive(){
         if(!active){
                 socket.connect();
+                alert("reconnected!");
                 active = true;
                 window.clearTimeout(timeoutID);
         }
